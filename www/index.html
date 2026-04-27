@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>The Thunderbolt — الصاعقة</title>
+<meta name="description" content="Interactive trilingual guide to 'The Bitter Truth' by Sheikh Mohammed al-Ghazali">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌩️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="genius.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<!-- ===================== SPLASH SCREEN ===================== -->
+<div id="splash-screen" class="splash-screen">
+  <div class="splash-content">
+    <div class="splash-icon">🌩️</div>
+    <h1 class="splash-title">الصاعقة</h1>
+    <p class="splash-subtitle">The Thunderbolt</p>
+    <p class="splash-book">الحق المر — The Bitter Truth</p>
+    <p class="splash-author">Sheikh Mohammed al-Ghazali</p>
+    <div class="splash-guide-items" id="splash-guide-items">
+      <div class="splash-guide-item" data-delay="0">⚡ 40 Bitter Truths</div>
+      <div class="splash-guide-item" data-delay="1">🌍 AR / EN / FR</div>
+      <div class="splash-guide-item" data-delay="2">📅 Life Timeline</div>
+    </div>
+    <div class="splash-countdown" id="splash-countdown">3</div>
+    <div class="splash-loader">
+      <div class="splash-loader-bar" id="splash-loader-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== LIGHTNING OVERLAY ===================== -->
+<div class="lightning-overlay" id="lightning-overlay"></div>
+
+<!-- ===================== SACRED BAR ===================== -->
+<div class="deco-band top-band" aria-hidden="true"></div>
+  <div class="sacred-bar" id="sacred-bar">
+  <span class="sacred-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+  <span class="sacred-ayah">﴿ الَّذِينَ يَسْتَمِعُونَ الْقَوْلَ فَيَتَّبِعُونَ أَحْسَنَهُ ﴾</span>
+</div>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="top-bar" id="top-bar">
+  <div class="top-bar-row">
+    <div class="top-bar-left">
+      <button class="badge-btn" id="badge-btn" aria-label="Workshop DIY" title="workshop-diy.org">
+        <svg class="workshop-logo" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15.5" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="17" cy="17" r="12" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 2"/>
+          <text x="17" y="14" text-anchor="middle" fill="currentColor" font-family="Oswald,sans-serif" font-size="9" font-weight="700" letter-spacing="0.5">WORKSHOP</text>
+          <text x="17" y="23" text-anchor="middle" fill="currentColor" font-family="Oswald,sans-serif" font-size="7" font-weight="400" letter-spacing="1">DIY</text>
+          <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="0.6"/>
+          <line x1="21" y1="16" x2="26" y2="16" stroke="currentColor" stroke-width="0.6"/>
+        </svg>
+      </button>
+      <!-- Reading Progress Badge -->
+      <span class="reading-progress-badge" id="reading-progress-badge" title="Reading progress">0/40</span>
+    </div>
+    <div class="top-bar-center">
+      <span class="app-icon">🌩️</span>
+      <h1 class="app-title" data-i18n="appTitle">الصاعقة</h1>
+    </div>
+    <div class="top-bar-right">
+      <button class="narrator-btn" id="narratorMainBtn" onclick="narratorTogglePanel()" aria-label="Narrator">🎧</button>
+      <button class="help-btn" id="help-btn" aria-label="Help" title="Help">?</button>
+      <div class="lang-switcher" id="lang-switcher">
+        <!-- Algeria flag for Arabic -->
+        <button class="lang-btn" data-lang="ar" aria-label="العربية" title="العربية">
+          <svg width="20" height="14" viewBox="0 0 30 20"><rect width="15" height="20" fill="#006233"/><rect x="15" width="15" height="20" fill="#fff"/><circle cx="16.5" cy="10" r="5" fill="#D21034"/><circle cx="18" cy="10" r="4" fill="#fff"/><circle cx="17" cy="10" r="4" fill="#006233"/><polygon points="17,6 18,9 21,9 18.5,11 19.5,14 17,12 14.5,14 15.5,11 13,9 16,9" fill="#D21034" transform="scale(0.6) translate(14,7)"/></svg>
+        </button>
+        <!-- UK flag for English -->
+        <button class="lang-btn" data-lang="en" aria-label="English" title="English">
+          <svg viewBox="0 0 30 20" width="30" height="20">
+            <rect width="30" height="20" fill="#012169"/>
+            <path d="M0,0 L30,20 M30,0 L0,20" stroke="#fff" stroke-width="3"/>
+            <path d="M0,0 L30,20 M30,0 L0,20" stroke="#C8102E" stroke-width="1.5"/>
+            <path d="M15,0 V20 M0,10 H30" stroke="#fff" stroke-width="5"/>
+            <path d="M15,0 V20 M0,10 H30" stroke="#C8102E" stroke-width="3"/>
+          </svg>
+        </button>
+        <!-- France flag for French -->
+        <button class="lang-btn" data-lang="fr" aria-label="Francais" title="Francais">
+          <svg viewBox="0 0 30 20" width="30" height="20">
+            <rect width="10" height="20" fill="#002395"/>
+            <rect x="10" width="10" height="20" fill="#fff"/>
+            <rect x="20" width="10" height="20" fill="#ED2939"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== THEME SWITCHER ===================== -->
+<div class="theme-switcher" id="theme-switcher">
+  <button class="theme-btn active" data-theme="thunderbolt" title="صاعقة — Thunderbolt">
+    <span class="theme-dot thunderbolt-dot"></span>
+    <span class="theme-label" data-i18n="themeThunderbolt">صاعقة</span>
+  </button>
+  <button class="theme-btn" data-theme="storm" title="عاصفة — Storm">
+    <span class="theme-dot storm-dot"></span>
+    <span class="theme-label" data-i18n="themeStorm">عاصفة</span>
+  </button>
+  <button class="theme-btn" data-theme="clear" title="صحو — Clear Sky">
+    <span class="theme-dot clear-dot"></span>
+    <span class="theme-label" data-i18n="themeClear">صحو</span>
+  </button>
+</div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<main class="main-content" id="main-content">
+
+  <!-- ========== TAB 1: HOME ========== -->
+  <section class="tab-panel" id="panel-home">
+    <div class="section-header reveal-on-scroll">
+      <h2 class="section-title" data-i18n="homeTitle">الحقيقة المرة اليوم</h2>
+      <p class="section-subtitle" data-i18n="homeSubtitle">حقيقة واحدة تتغير كل يوم — تأمّلها</p>
+    </div>
+
+    <!-- Daily Thunderbolt Notification Area -->
+    <div class="daily-thunderbolt reveal-on-scroll" id="daily-thunderbolt">
+      <div class="daily-thunderbolt-flash"></div>
+      <div class="daily-thunderbolt-badge">⚡</div>
+      <div class="daily-thunderbolt-text" data-i18n="dailyThunderbolt">صاعقة اليوم</div>
+    </div>
+
+    <!-- Daily Bitter Truth Card -->
+    <div class="daily-card reveal-on-scroll" id="daily-card">
+      <div class="daily-card-header">
+        <span class="daily-card-icon">⚡</span>
+        <span class="daily-card-label" data-i18n="dailyLabel">حقيقة اليوم المرة</span>
+        <span class="daily-card-number" id="daily-number">#1</span>
+      </div>
+      <h3 class="daily-card-title" id="daily-title"></h3>
+      <div class="daily-card-body">
+        <div class="daily-truth" id="daily-truth"></div>
+      </div>
+      <div class="daily-card-footer">
+        <button class="daily-share-btn" id="daily-share-btn" data-i18n="shareBtn">شارك</button>
+      </div>
+    </div>
+
+    <!-- Bio Teaser with Days Until Death Counter -->
+    <div class="bio-teaser reveal-on-scroll">
+      <div class="bio-teaser-icon">🖊️</div>
+      <p class="bio-teaser-text" data-i18n="bioTeaser">كتب الشيخ الغزالي مقدمة الجزء الأخير من "الحق المر" قبل وفاته بسبعة أيام فقط. رحل في ٩ مارس ١٩٩٦ ودُفن في المدينة المنورة.</p>
+      <div class="death-countdown" id="death-countdown">
+        <div class="death-countdown-title" data-i18n="deathCountdownTitle">الأيام السبعة الأخيرة</div>
+        <div class="death-countdown-visual">
+          <div class="countdown-day" data-day="7"><span class="countdown-day-num">7</span><span class="countdown-day-label">📝</span></div>
+          <div class="countdown-day" data-day="6"><span class="countdown-day-num">6</span></div>
+          <div class="countdown-day" data-day="5"><span class="countdown-day-num">5</span></div>
+          <div class="countdown-day" data-day="4"><span class="countdown-day-num">4</span></div>
+          <div class="countdown-day" data-day="3"><span class="countdown-day-num">3</span></div>
+          <div class="countdown-day" data-day="2"><span class="countdown-day-num">2</span></div>
+          <div class="countdown-day" data-day="1"><span class="countdown-day-num">1</span></div>
+          <div class="countdown-day final" data-day="0"><span class="countdown-day-num">0</span><span class="countdown-day-label">🕊️</span></div>
+        </div>
+        <div class="death-countdown-dates">
+          <span class="bio-date-item">📝 2 March 1996 — Final preface written</span>
+          <span class="bio-date-item">🕊️ 9 March 1996 — Returned to Allah</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="stats-row reveal-on-scroll">
+      <div class="stat-card">
+        <div class="stat-number">6</div>
+        <div class="stat-label" data-i18n="statVolumes">أجزاء</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">97+</div>
+        <div class="stat-label" data-i18n="statEssays">مقالة</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label" data-i18n="statYears">سنوات كتابة</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label" data-i18n="statDays">أيام قبل الرحيل</div>
+      </div>
+    </div>
+
+    <!-- Impact Quotes Section -->
+    <div class="impact-quotes-section reveal-on-scroll" id="impact-quotes-section">
+      <h3 class="impact-quotes-title" data-i18n="impactQuotesTitle">صواعق الغزالي</h3>
+      <p class="impact-quotes-subtitle" data-i18n="impactQuotesSubtitle">عشرة محاور من صميم الكتاب</p>
+      <div class="impact-quotes-container" id="impact-quotes-container">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TAB 2: THE BITTER TRUTHS ========== -->
+  <section class="tab-panel" id="panel-truths">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="truthsTitle">الحقائق المرّة</h2>
+      <p class="section-subtitle" data-i18n="truthsSubtitle">٤٠ حقيقة مختارة من الكتاب — اضغط لتوسيع</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-wrapper" id="search-bar-wrapper">
+      <div class="search-bar">
+        <svg class="search-bar-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" class="search-input" id="search-input" placeholder="ابحث في الحقائق..." data-i18n-placeholder="searchPlaceholder" autocomplete="off">
+        <button class="search-clear-btn" id="search-clear-btn" style="display:none">&times;</button>
+      </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-bar reveal-on-scroll" id="reading-progress-bar">
+      <div class="reading-progress-fill" id="reading-progress-fill"></div>
+      <span class="reading-progress-text" id="reading-progress-text">0/40</span>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter" id="category-filter">
+      <button class="cat-btn active" data-cat="all" data-i18n="catAll">الكل</button>
+      <button class="cat-btn" data-cat="self" data-i18n="catSelf">نقد الذات</button>
+      <button class="cat-btn" data-cat="women" data-i18n="catWomen">حقوق المرأة</button>
+      <button class="cat-btn" data-cat="political" data-i18n="catPolitical">سياسة</button>
+      <button class="cat-btn" data-cat="knowledge" data-i18n="catKnowledge">علم وإيمان</button>
+      <button class="cat-btn" data-cat="courage" data-i18n="catCourage">شجاعة وصدق</button>
+      <button class="cat-btn" data-cat="bookmarks" data-i18n="catBookmarks">محفوظاتي</button>
+    </div>
+
+    <!-- Essays Container -->
+    <div class="essays-container" id="essays-container">
+      <!-- Essays will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- ========== TAB 3: TIMELINE ========== -->
+  <section class="tab-panel" id="panel-timeline">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="timelineTitle">المسيرة</h2>
+      <p class="section-subtitle" data-i18n="timelineSubtitle">محطات في حياة الشيخ محمد الغزالي</p>
+    </div>
+
+    <div class="timeline" id="timeline-container">
+      <!-- Timeline items injected by JS -->
+    </div>
+  </section>
+
+  <!-- ========== TAB 4: ABOUT ========== -->
+  <section class="tab-panel active" id="panel-about">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="aboutTitle">عن الكتاب</h2>
+      <p class="section-subtitle" data-i18n="aboutSubtitle">الحق المر — محمد الغزالي</p>
+    </div>
+
+    <!-- Book Info -->
+    <div class="about-card reveal-on-scroll">
+      <h3 class="about-card-title" data-i18n="bookInfoTitle">📚 عن الكتاب</h3>
+      <p class="about-card-text" data-i18n="bookInfoText">
+        "الحق المر" سلسلة من ٦ أجزاء تضم أكثر من ٩٧ مقالة قصيرة، كتبها الشيخ محمد الغزالي في العقد الأخير من حياته (١٩٨٨-١٩٩٦). استلهم أسلوبه من كتاب "صيد الخاطر" لابن الجوزي. كل مقالة هي "حقيقة مرة" عن إخفاقات المسلمين — نقد ذاتي صريح وليس تحميل الآخرين المسؤولية. كتب مقدمة الجزء الأخير قبل وفاته بسبعة أيام فقط.
+      </p>
+    </div>
+
+    <!-- Author Bio -->
+    <div class="about-card reveal-on-scroll">
+      <h3 class="about-card-title" data-i18n="authorBioTitle">🖊️ عن المؤلف</h3>
+      <p class="about-card-text" data-i18n="authorBioText">
+        الشيخ محمد الغزالي (١٩١٧-١٩٩٦) عالم ومفكر إسلامي مصري من قرية نكلا العنب. تخرج من الأزهر عام ١٩٤١. انضم إلى الإخوان المسلمين وكان قريبا من حسن البنا، ثم انفصل عنهم. صودرت كتبه أكثر من مرة. حصل على جائزة الملك فيصل عام ١٩٨٩. درّس في السعودية والجزائر. توفي في الرياض ودُفن في المدينة المنورة.
+      </p>
+    </div>
+
+    <!-- Topics -->
+    <div class="about-card reveal-on-scroll">
+      <h3 class="about-card-title" data-i18n="topicsTitle">📋 موضوعات الكتاب</h3>
+      <div class="topics-grid">
+        <span class="topic-tag" data-i18n="topicSelf">نقد ذاتي</span>
+        <span class="topic-tag" data-i18n="topicIgnorance">الجهل</span>
+        <span class="topic-tag" data-i18n="topicWomen">حقوق المرأة</span>
+        <span class="topic-tag" data-i18n="topicDespotism">الاستبداد السياسي</span>
+        <span class="topic-tag" data-i18n="topicExtremism">التطرف الديني</span>
+        <span class="topic-tag" data-i18n="topicPalestine">فلسطين</span>
+        <span class="topic-tag" data-i18n="topicImperialism">الاستعمار الثقافي</span>
+        <span class="topic-tag" data-i18n="topicWeakness">الضعف الداخلي</span>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="about-card disclaimer-card reveal-on-scroll">
+      <h3 class="about-card-title" data-i18n="disclaimerTitle">⚠️ تنبيه</h3>
+      <p class="about-card-text" data-i18n="disclaimerText">
+        لستُ عالمًا ولا متخصصًا. هذا جهد متواضع من أب/أم مسلم(ة). المحتوى مستوحى من الكتاب ومصادر إسلامية موثوقة. ليس فتوى ولا مرجعًا شرعيًا. يُرجى الرجوع دائمًا للعلماء المتخصصين.
+      </p>
+    </div>
+
+    <!-- Sources -->
+    <div class="about-card reveal-on-scroll">
+      <h3 class="about-card-title" data-i18n="sourcesTitle">📖 المصادر</h3>
+      <ul class="sources-list">
+        <li data-i18n="source1">الحق المر — محمد الغزالي (٦ أجزاء)</li>
+        <li data-i18n="source2">صيد الخاطر — ابن الجوزي</li>
+        <li data-i18n="source3">السنة النبوية بين أهل الفقه وأهل الحديث — محمد الغزالي</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== DUA FLOAT ===================== -->
+<button class="dua-float" id="dua-float" aria-label="Dua" title="دعاء">
+  🤲
+</button>
+
+<!-- ===================== SCROLL TO TOP ===================== -->
+<button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top" title="Scroll to top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<!-- ===================== TOAST ===================== -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ===================== HELP MODAL ===================== -->
+<div class="modal-overlay" id="help-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="help-modal-close">&times;</button>
+    <h2 class="modal-title" data-i18n="helpTitle">المساعدة</h2>
+    <div class="modal-body">
+      <p data-i18n="helpIntro">مرحبًا بك في تطبيق "الصاعقة" — دليلك التفاعلي لكتاب "الحق المر".</p>
+      <ul class="help-list">
+        <li data-i18n="helpItem1">🏠 <strong>الرئيسية:</strong> حقيقة مرة يومية تتغير كل يوم</li>
+        <li data-i18n="helpItem2">⛈️ <strong>الحقائق:</strong> ٤٠ مقالة مختارة — اضغط لتوسيع</li>
+        <li data-i18n="helpItem3">📅 <strong>المسيرة:</strong> محطات حياة الشيخ الغزالي</li>
+        <li data-i18n="helpItem4">📖 <strong>عن الكتاب:</strong> معلومات ومصادر</li>
+        <li data-i18n="helpItem5">🎨 اختر من ٣ ألوان: صاعقة، عاصفة، صحو</li>
+        <li data-i18n="helpItem6">🌐 ٣ لغات: العربية، English، Francais</li>
+        <li data-i18n="helpItem7">🤲 زر الدعاء العائم — اضغطه للدعاء</li>
+        <li data-i18n="helpItem8">🔍 ابحث في المقالات بالكلمات المفتاحية</li>
+        <li data-i18n="helpItem9">🔖 احفظ مقالاتك المفضلة في محفوظاتي</li>
+        <li data-i18n="helpItem10">📊 تابع تقدمك في القراءة</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DUA MODAL ===================== -->
+<div class="modal-overlay" id="dua-modal">
+  <div class="modal-content dua-modal-content">
+    <button class="modal-close" id="dua-modal-close">&times;</button>
+    <div class="dua-display" id="dua-display">
+      <p class="dua-arabic" id="dua-arabic"></p>
+      <p class="dua-translation" id="dua-translation"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NARRATOR PANEL ===================== -->
+<div id="narratorPanel" class="narrator-panel hidden">
+  <div class="narrator-header">
+    <span class="narrator-title" id="narratorTitle">🎧 Narrator</span>
+    <button onclick="narratorTogglePanel()" class="help-close">&#10005;</button>
+  </div>
+  <div class="narrator-body">
+    <!-- Mode buttons -->
+    <div class="narrator-modes">
+      <button class="narrator-mode-btn" onclick="narratorPlayPage()">
+        <span>▶️</span> <span class="narrator-mode-label" data-nr="page">Read this page</span>
+      </button>
+      <button class="narrator-mode-btn" onclick="narratorPlayBook()">
+        <span>📖</span> <span class="narrator-mode-label" data-nr="book">Read as a book</span>
+      </button>
+    </div>
+    <!-- Transport controls -->
+    <div class="narrator-controls">
+      <button class="narrator-ctrl" onclick="narratorPrev()">⏮️</button>
+      <button class="narrator-ctrl narrator-ctrl-main" id="narratorPlayPause" onclick="narratorPause()">▶️</button>
+      <button class="narrator-ctrl" onclick="narratorNext()">⏭️</button>
+      <button class="narrator-ctrl" onclick="narratorStop()">⏹️</button>
+    </div>
+    <!-- Progress -->
+    <div class="narrator-progress-wrap">
+      <div class="narrator-bar-bg"><div class="narrator-bar-fill" id="narratorBar"></div></div>
+      <span class="narrator-progress-text" id="narratorProgress">0/0</span>
+    </div>
+    <!-- Settings -->
+    <div class="narrator-settings">
+      <div class="narrator-setting">
+        <label data-nr="voice">Voice</label>
+        <select id="narratorVoice" onchange="narratorVoiceChange(this.value)" onfocus="narratorPopulateVoices()"></select>
+      </div>
+      <div class="narrator-setting">
+        <label data-nr="speed">Speed</label>
+        <input type="range" id="narratorSpeed" min="0.5" max="2" step="0.25" value="1" oninput="narratorSpeedChange(this.value)">
+        <span id="narratorSpeedLabel">1x</span>
+      </div>
+      <div class="narrator-setting">
+        <label data-nr="pitch">Pitch</label>
+        <input type="range" id="narratorPitch" min="0.5" max="1.5" step="0.1" value="1" oninput="narratorPitchChange(this.value)">
+        <span id="narratorPitchLabel">1.0</span>
+      </div>
+      <div class="narrator-setting">
+        <label data-nr="loop">Loop card</label>
+        <select id="narratorLoop" onchange="narratorLoopChange(this.value)">
+          <option value="0" data-nr="off">Off</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="5">5x</option>
+        </select>
+      </div>
+      <div class="narrator-setting">
+        <label data-nr="sleep">Sleep timer</label>
+        <select id="narratorSleep" onchange="narratorSleepChange(this.value)">
+          <option value="0" data-nr="off">Off</option>
+          <option value="5">5 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+        </select>
+      </div>
+      <div class="narrator-toggles">
+        <label class="narrator-toggle"><input type="checkbox" checked onchange="narratorKaraokeToggle(this.checked)"> <span data-nr="karaoke">Karaoke</span></label>
+        <label class="narrator-toggle"><input type="checkbox" checked onchange="narratorAutoScrollToggle(this.checked)"> <span data-nr="autoscroll">Auto-scroll</span></label>
+        <label class="narrator-toggle"><input type="checkbox" onchange="narratorDuoToggle(this.checked)"> <span data-nr="duo">Duo (AR+FR)</span></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BOTTOM TABS ===================== -->
+<nav class="bottom-tabs" id="bottom-tabs">
+    <div class="tabs-meta"><div class="ticker-wrap"><div class="ticker-text" id="tickerText"></div></div></div>
+    <div class="tabs-row">
+      <button class="tab-btn" data-tab="home" aria-label="Home">
+    <span class="tab-icon">🏠</span>
+    <span class="tab-label" data-i18n="tabHome">الرئيسية</span>
+  </button>
+  <button class="tab-btn" data-tab="truths" aria-label="Truths">
+    <span class="tab-icon">⛈️</span>
+    <span class="tab-label" data-i18n="tabTruths">الحقائق</span>
+  </button>
+  <button class="tab-btn" data-tab="timeline" aria-label="Timeline">
+    <span class="tab-icon">📅</span>
+    <span class="tab-label" data-i18n="tabTimeline">المسيرة</span>
+  </button>
+  <button class="tab-btn active" data-tab="about" aria-label="About">
+    <span class="tab-icon">📖</span>
+    <span class="tab-label" data-i18n="tabAbout">عن الكتاب</span>
+  </button>
+    </div></nav>
+
+<!-- ===================== FOOTER ===================== -->
+
+<script src="app.js"></script>
+<script src="narrator.js"></script>
+<script src="genius.js"></script><script>document.addEventListener('DOMContentLoaded',function(){if(window.geniusInit)geniusInit({particles:{color1:'rgba(255,214,0,0.2)',color2:'rgba(255,255,255,0.1)',count:18},appKey:'saaiqa',darkTheme:'storm'})});</script>
+</body>
+</html>

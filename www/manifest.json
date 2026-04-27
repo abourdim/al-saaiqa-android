@@ -1,0 +1,12 @@
+{
+  "name": "The Thunderbolt — الصاعقة",
+  "short_name": "الصاعقة",
+  "description": "Interactive trilingual app based on Sheikh Mohammed al-Ghazali's book",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FFD600",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": []
+}
